@@ -29,8 +29,8 @@ while ($x < 10) {
 
 // Ex 4
 foreach ($numbers as $number) {
-    if($number % 2 === 0) {
-        echo "Number $number divides by 2 with no remainder.\n";
+    if($number % 3 === 0) {
+        echo "Number $number divides by 3 with no remainder.\n";
     }
 }
 

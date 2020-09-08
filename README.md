@@ -12,3 +12,9 @@
   * there is a separate folder in 06-Filesystem/ folder for each exercise.
   
   * each exercise folder contains index.php as an entry point.
+
+**01-Basics**
+(corresponds to https://github.com/codelex-io/php-syllabus/tree/main/php-basics)
+
+
+* each section has a subfolder with a separate exercise file.
