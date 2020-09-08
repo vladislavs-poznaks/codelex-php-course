@@ -1,5 +1,5 @@
 **00-Basics**
-
+(corresponds to https://github.com/codelex-io/php-syllabus/tree/main/exercises/basics)
 
 *For Sections 1 - 5:*
 
