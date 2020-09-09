@@ -76,7 +76,12 @@ do {
         }
         echo "\n\n";
     } elseif (count($misses) === 4) {
-        echo "Whoopsy, you're a dead weight now!\n\n";
+        echo "Whoopsy, you're a dead weight now!\n";
+        echo "The word was ";
+        foreach ($display as $letter) {
+            echo "$letter ";
+        }
+        echo "\n\n";
     }
 
     // Prompt to play again
