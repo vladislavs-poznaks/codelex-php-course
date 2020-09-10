@@ -35,7 +35,6 @@ foreach ($numbers as $number) {
 }
 
 // Ex 5
-
 $persons =[
     'john' => new Person("John", "Doe", 34, "12/28/1987"),
     'jane' => new Person("Jane", "Doe", 27, "12/01/1999"),
