@@ -16,5 +16,8 @@
 **01-Basics**
 (corresponds to https://github.com/codelex-io/php-syllabus/tree/main/php-basics)
 
-
 * each section has a subfolder with a separate exercise file.
+
+**10-Lesson-Notes**
+
+* lesson notes organized in folders by dates.
