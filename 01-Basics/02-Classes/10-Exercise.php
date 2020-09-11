@@ -91,6 +91,9 @@ class VideoStore
 {
     protected $videos = [];
 
+    /**
+     * @return Video[]
+     */
     public function getMovies()
     {
         return $this->videos;
@@ -155,7 +158,8 @@ class VideoStore
         }
         return false;
     }
-    private function findMovie($title)
+
+    private function findMovie($title): Video
     {
         foreach ($this->videos as $video) {
             if ($video->getTitle() === $title) {
