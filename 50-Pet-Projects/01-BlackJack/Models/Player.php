@@ -12,6 +12,13 @@ class Player
         return $hand;
     }
 
+    public function isPlaying($playerScore) {
+        if ($playerScore < 21) {
+            return true;
+        }
+        return false;
+    }
+
     public function takeCard(Card $card)
     {
         $this->cards[] = $card;

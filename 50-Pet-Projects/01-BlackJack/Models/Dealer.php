@@ -6,9 +6,13 @@ class Dealer extends Player
         return $this->cards[0]->show() . ' **';
     }
 
-    public function isPlaying(): bool
+    public function isPlaying($playerScore): bool
     {
-        if ($this->getScore() < 17) {
+        if ($playerScore >= 21) {
+            return false;
+        } elseif ($this->getScore() < $playerScore) {
+            return true;
+        } elseif ($this->getScore() === $playerScore && $this->getScore() < 17) {
             return true;
         } else {
             return false;

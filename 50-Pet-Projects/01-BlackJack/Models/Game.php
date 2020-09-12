@@ -1,71 +1,40 @@
 <?php
 class Game
 {
-    private $deck;
-    private $player;
-    private $dealer;
+    private $money = 100;
+    private $bet;
 
-    public function __construct()
+    public function getMoney(): int
     {
-        $this->deck = new Deck();
-        $this->player = new Player();
-        $this->dealer = new Dealer();
-
-        $this->deck->shuffle();
-
-        for ($i = 0; $i < 2; $i++) {
-            $this->player->takeCard($this->deck->getCard());
-            $this->dealer->takeCard($this->deck->getCard());
-        }
-
+        return $this->money;
     }
 
-    public function getHands(): string
+    public function setBet(int $bet)
     {
-        return "Dealer: " . $this->dealer->getHiddenHand() . " || Player: " . $this->player->getHand() . PHP_EOL;
-    }
-
-    public function playerIsPlaying($input): bool
-    {
-        if ($this->player->getScore() < 21 && ! in_array($input, ['s', 'stand'])) {
-            return true;
+        if ($bet <= $this->money) {
+            $this->bet = $bet;
+            $this->money -= $bet;
+            return "Your bet of $$this->bet is accepted!";
         } else {
-            return false;
+            return "Sorry, not enough money";
         }
     }
 
-    public function playerPlays($input) {
-        if (in_array($input, ['h', 'hit'])) {
-            $this->player->takeCard($this->deck->getCard());
-        }
+    public function win()
+    {
+        $this->bet *= 2;
+        $this->money += $this->bet;
+        $this->bet = 0;
     }
 
-    public function dealerPlays() {
-        while ($this->dealer->isPlaying()) $this->dealer->takeCard($this->deck->getCard());
+    public function loose()
+    {
+        $this->bet = 0;
     }
 
-    public function getResult() {
-        $result = PHP_EOL
-            . "Dealer: " . $this->dealer->getHand() . " || Player: " . $this->player->getHand()
-            . PHP_EOL
-            . "Dealer: " . $this->dealer->getScore() . " || Player: " . $this->player->getScore()
-            . PHP_EOL
-            . PHP_EOL;
-
-        if ($this->player->getScore() === 21) {
-            $result .= "BlackJack!";
-        } elseif ($this->player->getScore() > 21) {
-            $result .= "Player Busts!";
-        } elseif ($this->dealer->getScore() > 21) {
-            $result .= "Dealer Busts! You Won!";
-        } elseif ($this->player->getScore() === $this->dealer->getScore()) {
-            $result .= "Push! No Winner...";
-        } elseif ($this->player->getScore() > $this->dealer->getScore()) {
-            $result .= "Congrats! You Won!";
-        } else {
-            $result .= "Sorry, You Lost!";
-        }
-
-        return $result . PHP_EOL;
+    public function push()
+    {
+        $this->money += $this->bet;
+        $this->bet = 0;
     }
 }
