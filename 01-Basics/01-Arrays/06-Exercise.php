@@ -9,24 +9,28 @@ const WORDS = ['cookies',
     'monkey'];
 
 //Functions
-function displayTurn($display, $misses) {
+function displayTurn($display, $misses)
+{
+    $message = '';
     for ($i = 0; $i < count($display) + 5; $i++) {
-        echo "-=";
+        $message .= "-=";
     }
-    echo "-\n\n";
+    $message .= "-\n\n";
 
-    echo "Word:    ";
+    $message .= "Word:    ";
     foreach ($display as $letter) {
-        echo "$letter ";
+        $message .= "$letter ";
     }
 
-    echo "\n\nMisses:  ";
+    $message .= "\n\nMisses:  ";
     foreach ($misses as $letter) {
-        echo "$letter ";
+        $message .= "$letter ";
     }
-    echo "\n\n";
+    return $message . "\n\n";
 }
-function isWin($display) {
+
+function isWin($display)
+{
     foreach ($display as $letter) {
         if ($letter === '_') {
             return false;
@@ -49,7 +53,7 @@ do {
     do {
         // var_dump($word);
 
-        displayTurn($display, $misses);
+        echo displayTurn($display, $misses);
         $guess = readline("Guess:  ");
 
         //Check letter in word

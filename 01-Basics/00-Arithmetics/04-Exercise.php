@@ -1,14 +1,15 @@
 <?php
 
-function factorial($lower, $upper) {
+function factorial($lower, $upper)
+{
     $factorial = 1;
 
     for ($i = $lower; $i <= $upper; $i++) {
         $factorial *= $i;
     }
 
-    echo "The factorial from $lower to $upper is $factorial.\n";
+    return "The factorial from $lower to $upper is $factorial.\n";
 }
 
 // Tests
-factorial(1, 10);
+echo factorial(1, 10);

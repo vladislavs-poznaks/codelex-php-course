@@ -1,10 +1,7 @@
 <?php
 
-$min = readline("Min: ");
-$min = intval($min);
-
-$max = readline("Max: ");
-$max = intval($max);
+$min = (int) readline("Min: ");
+$max = (int) readline("Max: ");
 
 for ($i = $min; $i <= $max; $i++) {
 

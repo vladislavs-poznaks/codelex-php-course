@@ -20,7 +20,7 @@ class Application
             echo "Choose 5 to list inventory\n";
 
             $command = readline();
-            $this->drawSeparator();
+            echo $this->drawSeparator();
 
             switch ($command) {
                 case '0':
@@ -50,22 +50,22 @@ class Application
     private function addMovies()
     {
         $title = $this->enterTitle();
-        $this->store->addMovie(new Video($title));
+        echo $this->store->addMovie(new Video($title));
     }
     private function rentVideo()
     {
         $title = $this->enterTitle();
-        $this->store->rentOutMovie($title);
+        echo $this->store->rentOutMovie($title);
     }
     private function returnVideo()
     {
         $title = $this->enterTitle();
-        $this->store->returnMovie($title);
+        echo $this->store->returnMovie($title);
     }
     private function addRating()
     {
         $title = $this->enterTitle();
-        $this->store->addRating($title);
+        echo $this->store->addRating($title);
     }
     private function listInventory()
     {
@@ -74,16 +74,19 @@ class Application
         }
         echo "\n";
     }
+
     // Helper Functions
-    private function enterTitle() {
+    private function enterTitle()
+    {
         return readline("Enter title of the movie: ");
     }
     private function drawSeparator()
     {
+        $separator = '';
         for ($i = 0; $i < 80; $i++) {
-            echo "-";
+            $separator .= "-";
         }
-        echo "\n";
+        return $separator . "\n";
     }
 }
 
@@ -98,56 +101,68 @@ class VideoStore
     {
         return $this->videos;
     }
+
     public function addMovie(Video $video)
     {
         if ($this->isMovie($video->getTitle())) {
-            echo "Sorry, '" . $video->getTitle() . "' already exists.\n\n";
+            return "Sorry, '" . $video->getTitle() . "' already exists.\n\n";
         } else {
             $this->videos[] = $video;
-            echo "Movie '" . $video->getTitle() . "' added to the store!\n\n";
+            return "Movie '" . $video->getTitle() . "' added to the store!\n\n";
         }
     }
+
     public function rentOutMovie($title)
     {
+        $message = '';
         if ($this->isMovie($title)) {
-            echo "Movie '$title' found in store.\n";
+            $message .= "Movie '$title' found in store.\n";
             if ($this->findMovie($title)->isAvailable()) {
                 $this->findMovie($title)->rentIt();
-                echo "Movie '$title' successfully rented.\n\n";
+                $message .= "Movie '$title' successfully rented.\n\n";
             } else {
-                echo "Sorry, '$title' already rented out.\n\n";
+                $message .= "Sorry, '$title' already rented out.\n\n";
             }
+            return $message;
         } else {
-            $this->movieNotFound($title);
+            return $this->movieNotFound($title);
         }
     }
+
     public function returnMovie($title)
     {
+        $message = '';
         if ($this->isMovie($title)) {
-            echo "Movie '$title' found in store.\n";
+            $message .= "Movie '$title' found in store.\n";
             if (! $this->findMovie($title)->isAvailable()) {
                 $this->findMovie($title)->returnIt();
-                echo "Movie '$title' successfully returned.\n\n";
+                $message .= "Movie '$title' successfully returned.\n\n";
             } else {
-                echo "Sorry, '$title' already has been returned.\n\n";
+                $message .= "Sorry, '$title' already has been returned.\n\n";
             }
+            return $message;
         } else {
-            $this->movieNotFound($title);
+            return $this->movieNotFound($title);
         }
     }
+
     public function addRating($title)
     {
+        $message = '';
         if ($this->isMovie($title)) {
-            echo "Movie '$title' found in store.\n";
+            $message .= "Movie '$title' found in store.\n";
             do {
                 $rating = readline("Enter rating for this movie: ");
             } while (! in_array($rating, ['1', '2', '3', '4', '5']));
             $this->findMovie($title)->addRating((int)$rating);
-            echo "You rated '$title' with $rating!.\n\n";
+            $message .= "You rated '$title' with $rating!.\n\n";
+
+            return $message;
         } else {
-            $this->movieNotFound($title);
+            return $this->movieNotFound($title);
         }
     }
+
     //Helper Functions
     private function isMovie($title)
     {
@@ -167,10 +182,11 @@ class VideoStore
             }
         }
     }
+
     private function movieNotFound($title)
     {
-        echo "Movie '$title' not found in store.\n";
-        echo "Check your input and try again.\n\n";
+        return "Movie '$title' not found in store.\n"
+                . "Check your input and try again.\n\n";
     }
 }
 
@@ -185,10 +201,9 @@ class Video
     {
         $this->title = $title;
     }
-
     // Used functions
-    public function showInfo() {
-
+    public function showInfo()
+    {
         $dots = " ";
         for ($i = 0; $i <= (45 - strlen($this->title)); $i++) {
             $dots .= ".";
@@ -199,20 +214,29 @@ class Video
             . " ...... RATING: "
             . (($this->rating > 0) ? number_format((float)$this->rating, 2) : "Not Rated");
     }
+
     public function getTitle()
     {
         return $this->title;
     }
-    public function isAvailable() {
+
+    public function isAvailable()
+    {
         return $this->available;
     }
-    public function rentIt() {
+
+    public function rentIt()
+    {
         $this->available = false;
     }
-    public function returnIt() {
+
+    public function returnIt()
+    {
         $this->available = true;
     }
-    public function addRating(int $rating) {
+
+    public function addRating(int $rating)
+    {
         $this->ratings[] = $rating;
         $this->rating = array_sum($this->ratings) / count($this->ratings);
     }

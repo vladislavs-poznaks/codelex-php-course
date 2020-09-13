@@ -7,9 +7,8 @@ $numbers = [
 ];
 
 echo "Enter the value to search for: ";
-$value = readline();
+$value = (int) readline();
 
-//todo check if an array contains a value user entered
 if (in_array($value, $numbers)) {
     echo "The value $value is in the array.\n";
 } else {

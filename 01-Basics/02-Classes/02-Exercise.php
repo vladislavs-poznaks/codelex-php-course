@@ -1,7 +1,7 @@
 <?php
 
-class Point {
-
+class Point
+{
     public $x;
     public $y;
 
@@ -16,15 +16,16 @@ class Point {
 $p1 = new Point(5, 2);
 $p2 = new Point(-3, 6);
 
-function swapPoints(Point $point1, Point $point2) {
-    $new1 = new Point($point2->x, $point2->y);
-    $new2 = new Point($point1->x, $point1->y);
+function swapPoints(Point &$p1, Point &$p2)
+{
+    $bufferX = $p1->x;
+    $bufferY = $p1->y;
 
-    global $p1;
-    global $p2;
+    $p1->x = $p2->x;
+    $p1->y = $p2->y;
 
-    $p1 = $new1;
-    $p2 = $new2;
+    $p2->x = $bufferX;
+    $p2->y = $bufferY;
 }
 
 swapPoints($p1, $p2);

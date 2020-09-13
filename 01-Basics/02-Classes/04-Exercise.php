@@ -1,6 +1,7 @@
 <?php
 
-class Movie {
+class Movie
+{
 
     protected $title;
     protected $studio;
@@ -25,7 +26,8 @@ $movies = [
     new Movie("Spider-Man: Into the Spider-Verse", "Columbia Pictures", "PG"),
 ];
 
-function getPG($movies) {
+function getPG($movies)
+{
     return
         array_filter($movies, function ($movie){
             return $movie->getRating() === "PG";

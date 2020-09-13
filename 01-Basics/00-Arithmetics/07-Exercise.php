@@ -1,10 +1,11 @@
 <?php
 
-function freefallDist($seconds) {
+function freeFallDist($seconds)
+{
     $distance = 0.5 * (-9.81) * pow($seconds, 2);
 
-    echo "In $seconds seconds you'll fall $distance metres.\n";
+    return "In $seconds seconds you'll fall $distance metres.\n";
 }
 
 //Tests
-freefallDist(10);
+echo freefallDist(10);

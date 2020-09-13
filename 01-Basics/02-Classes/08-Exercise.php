@@ -1,6 +1,7 @@
 <?php
 
-class SavingsAccount {
+class SavingsAccount
+{
     protected $balance;
     protected $interest;
 

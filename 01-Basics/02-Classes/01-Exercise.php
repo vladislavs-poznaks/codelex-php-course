@@ -1,7 +1,7 @@
 <?php
 
-class Product {
-
+class Product
+{
     protected $name;
     protected $price;
     protected $amount;
@@ -13,8 +13,8 @@ class Product {
         $this->amount = $amount;
     }
 
-    public function print_product() {
-        echo "$this->name, price $this->price, amount $this->amount\n";
+    public function showProduct() {
+        return "$this->name, price $this->price, amount $this->amount\n";
     }
 
     public function setPrice($price) {
@@ -27,17 +27,17 @@ class Product {
 
 }
 
-$logitech_mouse = new Product("Logitech mouse", 70.00, 14);
-$apple_phone = new Product("iPhone 5s", 999.99, 3);
-$epson_printer = new Product("Epson EB-U05", 440.46, 1);
+$logitechMouse = new Product("Logitech mouse", 70.00, 14);
+$applePhone = new Product("iPhone 5s", 999.99, 3);
+$epsonPrinter = new Product("Epson EB-U05", 440.46, 1);
 
-$logitech_mouse->print_product();
-$apple_phone->print_product();
-$epson_printer->print_product();
+echo $logitechMouse->showProduct();
+echo $applePhone->showProduct();
+echo $epsonPrinter->showProduct();
 
-$apple_phone->setPrice(499.99);
-$epson_printer->setAmount(10);
+$applePhone->setPrice(499.99);
+$epsonPrinter->setAmount(10);
 
-$logitech_mouse->print_product();
-$apple_phone->print_product();
-$epson_printer->print_product();
+echo $logitechMouse->showProduct();
+echo $applePhone->showProduct();
+echo $epsonPrinter->showProduct();

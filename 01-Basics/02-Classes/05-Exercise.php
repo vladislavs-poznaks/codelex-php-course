@@ -1,6 +1,7 @@
 <?php
 
-class Date {
+class Date
+{
     protected $day;
     protected $month;
     protected $year;
@@ -43,15 +44,16 @@ class Date {
     }
 
     public function displayDate() {
-        echo "$this->month/$this->day/$this->year\n";
+        return "$this->month/$this->day/$this->year\n";
     }
 
 }
 
 $date = new Date(9, 9, 2020);
 
-function dateTest(Date $date) {
-    $date->displayDate();
+function dateTest(Date $date)
+{
+    return $date->displayDate();
 }
 
-dateTest($date);
+echo dateTest($date);

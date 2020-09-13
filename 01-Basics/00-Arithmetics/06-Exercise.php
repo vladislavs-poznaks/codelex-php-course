@@ -1,11 +1,13 @@
 <?php
 
-function cozaLozaWoza($lower, $upper) {
+function cozaLozaWoza($lower, $upper)
+{
+
+    $output = '';
 
     for ($i = $lower; $i <= $upper; $i++) {
 
         // Checks
-        $output = '';
         if ($i % 3 === 0) {
             $output .= "Coza";
         }
@@ -19,18 +21,19 @@ function cozaLozaWoza($lower, $upper) {
         if ($i % 3 !== 0
         && $i % 5 !== 0
         && $i % 7 !== 0) {
-            $output = $i;
+            $output .= $i;
         }
-
-        // Output
-        echo "$output ";
 
         // Line Drop
         if ($i % 11 === 0) {
-            echo "\n";
+            $output .= "\n";
+        } else {
+            $output .= " ";
         }
     }
+
+    return $output;
 }
 
 //Tests
-cozaLozaWoza(1, 110);
+echo cozaLozaWoza(1, 110);

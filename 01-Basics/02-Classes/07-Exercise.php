@@ -1,6 +1,7 @@
 <?php
 
-class Dog {
+class Dog
+{
     protected $name;
     protected $sex;
 

@@ -1,7 +1,6 @@
 <?php
 
-$n = readline("Enter a number: ");
-$n = intval($n);
+$n = (int) readline("Enter a number: ");
 
 for ($r = 1; $r <= $n; $r++) {
 

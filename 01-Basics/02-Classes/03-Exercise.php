@@ -1,18 +1,19 @@
 <?php
 
-class FuelGauge {
+class FuelGauge
+{
 
     protected $fuel;
 
     public function showFuel() {
-        echo "Current fuel level is $this->fuel liters.\n";
+        return "Current fuel level is $this->fuel liters.\n";
     }
 
     public function fillFuel() {
         if ($this->fuel < 70) {
             $this->fuel++;
         } else {
-            echo "Fuel full\n";
+            return "Fuel full\n";
         }
     }
 
@@ -20,12 +21,8 @@ class FuelGauge {
         if ($this->fuel > 0) {
             $this->fuel--;
         } else {
-            echo "Fuel empty\n";
+            return "Fuel empty\n";
         }
-    }
-
-    public function setFuel($fuel) {
-        $this->fuel = $fuel;
     }
 
     public function getFuel() {
@@ -33,11 +30,12 @@ class FuelGauge {
     }
 }
 
-class Odometer {
+class Odometer
+{
     protected $kilometers = 0;
 
     public function showKM() {
-        echo "Current odometer reading is $this->kilometers kilometers.\n";
+        return "Current odometer reading is $this->kilometers kilometers.\n";
     }
 
     public function increaseKM(FuelGauge $fuel) {
@@ -45,31 +43,31 @@ class Odometer {
             ($this->kilometers !== 999999) ? $this->kilometers++ : $this->kilometers = 0;
 
             if ($this->kilometers % 10 === 0) {
-                $fuel->burnFuel();
+                return $fuel->burnFuel();
             }
 
         } else {
-            echo "Car stopped, no more fuel.\n";
+            return "Car stopped, no more fuel.\n";
         }
     }
 
 }
 
-$fuel_gauge = new FuelGauge();
+$fuelGauge = new FuelGauge();
 $odometer = new Odometer();
 
 // Filling Up
 do {
-    $fuel_gauge->fillFuel();
-    $fuel_gauge->showFuel();
-} while ($fuel_gauge->getFuel() < 70);
+    echo $fuelGauge->fillFuel();
+    echo $fuelGauge->showFuel();
+} while ($fuelGauge->getFuel() < 70);
 
 // Driving
 do {
 
-    $odometer->increaseKM($fuel_gauge);
-    $odometer->showKM();
+    echo $odometer->increaseKM($fuelGauge);
+    echo $odometer->showKM();
 
-} while ($fuel_gauge->getFuel() > 0);
+} while ($fuelGauge->getFuel() > 0);
 
-$fuel_gauge->showFuel();
+$fuelGauge->showFuel();

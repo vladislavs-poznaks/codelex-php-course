@@ -1,6 +1,7 @@
 <?php
 
-class Geometry {
+class Geometry
+{
 
     public static function circleArea($radius) {
         return pi() * pow($radius, 2);

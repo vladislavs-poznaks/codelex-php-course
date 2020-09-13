@@ -1,6 +1,7 @@
 <?php
 
-function checkFifteen($x, $y) {
+function checkFifteen($x, $y)
+{
     if ($x === 15
         || $y === 15
         || ($x + $y) === 15

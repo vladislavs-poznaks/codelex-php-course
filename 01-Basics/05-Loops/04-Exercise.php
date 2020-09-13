@@ -1,7 +1,6 @@
 <?php
 
-$number = readline("Max number: ");
-$number = intval($number);
+$number = (int) readline("Max number: ");
 
 for ($i = 1; $i <= $number; $i++) {
 

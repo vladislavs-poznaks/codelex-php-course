@@ -15,18 +15,22 @@ class Account
     {
         return "Account: " . $this->name . ": $" . number_format($this->balance, 2);
     }
+
     public function balance()
     {
         return $this->balance;
     }
+
     public function withdrawal($amount)
     {
         $this->balance -= $amount;
     }
+
     public function deposit($amount)
     {
         $this->balance += $amount;
     }
+
     public static function transfer(Account $from, Account $to, int $amount)
     {
         $from->withdrawal($amount);
@@ -34,30 +38,30 @@ class Account
     }
 }
 
-$bartos_account = new Account("Barto's account", 100.00);
-$bartos_swiss_account = new Account("Barto's account in Switzerland", 1000000.00);
+$bartosAccount = new Account("Barto's account", 100.00);
+$bartosSwissAccount = new Account("Barto's account in Switzerland", 1000000.00);
 
 echo "Initial state" . PHP_EOL;
-echo $bartos_account->showInfo() . PHP_EOL;
-echo $bartos_swiss_account->showInfo() . PHP_EOL;
+echo $bartosAccount->showInfo() . PHP_EOL;
+echo $bartosSwissAccount->showInfo() . PHP_EOL;
 
-$bartos_account->withdrawal(20);
-echo "Barto's account balance is now: " . $bartos_account->balance() . PHP_EOL;
-$bartos_swiss_account->deposit(200);
-echo "Barto's Swiss account balance is now: ".$bartos_swiss_account->balance() . PHP_EOL;
+$bartosAccount->withdrawal(20);
+echo "Barto's account balance is now: " . $bartosAccount->balance() . PHP_EOL;
+$bartosSwissAccount->deposit(200);
+echo "Barto's Swiss account balance is now: ".$bartosSwissAccount->balance() . PHP_EOL;
 
 echo "Final state" . PHP_EOL;
-echo $bartos_account->showInfo() . PHP_EOL;
-echo $bartos_swiss_account->showInfo() . PHP_EOL;
+echo $bartosAccount->showInfo() . PHP_EOL;
+echo $bartosSwissAccount->showInfo() . PHP_EOL;
 
-$matts_account = new Account("Matt's account", 1000.00);
-$my_account = new Account("My account");
+$mattsAccount = new Account("Matt's account", 1000.00);
+$myAccount = new Account("My account");
 
-$matts_account->withdrawal(100);
-$my_account->deposit(100);
+$mattsAccount->withdrawal(100);
+$myAccount->deposit(100);
 
-echo $matts_account->showInfo() . PHP_EOL;
-echo $my_account->showInfo() . PHP_EOL;
+echo $mattsAccount->showInfo() . PHP_EOL;
+echo $myAccount->showInfo() . PHP_EOL;
 
 $accountA = new Account("A", 100);
 $accountB = new Account("B");

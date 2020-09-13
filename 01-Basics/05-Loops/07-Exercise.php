@@ -1,11 +1,11 @@
 <?php
 
-function rollDice() {
+function rollDice()
+{
     return rand(1, 6);
 }
 
-$number = readline("Desired sum: ");
-$number = intval($number);
+$number = (int) readline("Desired sum: ");
 
 do {
 

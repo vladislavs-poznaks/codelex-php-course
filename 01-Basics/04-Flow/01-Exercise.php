@@ -1,14 +1,13 @@
 <?php
 
-
 echo "Input the 1st number: ";
-$first = readline();
+$first = (int) readline();
 
 echo "Input the 2nd number: ";
-$second = readline();
+$second = (int) readline();
 
 echo "Input the 3rd number: ";
-$third = readline();
+$third = (int) readline();
 
 $max = $first;
 ($second > $max) ? $max = $second : '';

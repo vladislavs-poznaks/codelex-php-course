@@ -1,80 +1,80 @@
 <?php
+const WINNING_COMBOS = [
+    //Rows
+    [[0, 0], [0, 1], [0, 2]],
+    [[1, 0], [1, 1], [1, 2]],
+    [[2, 0], [2, 1], [2, 2]],
+    //Columns
+    [[0, 0], [1, 0], [2, 0]],
+    [[0, 1], [1, 1], [2, 1]],
+    [[0, 2], [1, 2], [2, 2]],
+    //Diagonals
+    [[0, 0], [1, 1], [2, 2]],
+    [[0, 2], [1, 1], [2, 0]],
+];
 
 // Functions
-function newBoard() {
+function newBoard()
+{
     return [
     [' ', ' ', ' '],
     [' ', ' ', ' '],
     [' ', ' ', ' '],
 ];
 }
-function drawIntro() {
-    echo "      Tic Tac Toe\n";
 
-    echo "        Columns  \n";
-    echo "       0   1   2 \n";
-    echo "Row 0    |   |   \n";
-    echo "      ---+---+---\n";
-    echo "Row 1    |   |   \n";
-    echo "      ---+---+---\n";
-    echo "Row 2    |   |   \n";
+function displayIntro()
+{
+    return "      Tic Tac Toe\n"
+    . "        Columns  \n"
+    . "       0   1   2 \n"
+    . "Row 0    |   |   \n"
+    . "      ---+---+---\n"
+    . "Row 1    |   |   \n"
+    . "      ---+---+---\n"
+    . "Row 2    |   |   \n";
 }
-function displayBoard($board) {
-    echo "\n";
+
+function displayBoard($board)
+{
+    $display = "\n";
 
     for ($row = 0; $row < 3; $row++) {
 
-        echo "      ";
+        $display .= "      ";
         for ($col = 0; $col < 3; $col++) {
-            echo " " . $board[$row][$col] . " ";
+            $display .= " " . $board[$row][$col] . " ";
             if ($col === 2) {
-                echo " ";
+                $display .= " ";
             } else {
-                echo "|";
+                $display .= "|";
             }
         }
 
         if ($row === 2) {
-            echo "\n               \n";
+            $display .= "\n               \n";
         } else {
-            echo "\n      ---+---+---\n";
+            $display .= "\n      ---+---+---\n";
         }
     }
+
+    return $display;
 }
-function getWinner($board) {
+
+function getWinner($board)
+{
     //Winning Rows
-    if ($board[0][0] === $board[0][1] && $board[0][1] === $board[0][2]) {
-        return $board[0][0];
-    }
-    if ($board[1][0] === $board[1][1] && $board[0][1] === $board[1][2]) {
-        return $board[1][0];
-    }
-    if ($board[2][0] === $board[2][1] && $board[2][1] === $board[2][2]) {
-        return $board[2][0];
-    }
-
-    //Winning Columns
-    if ($board[0][0] === $board[1][0] && $board[1][0] === $board[2][0]) {
-        return $board[0][0];
-    }
-    if ($board[0][1] === $board[1][1] && $board[1][1] === $board[2][1]) {
-        return $board[0][1];
-    }
-    if ($board[0][2] === $board[1][2] && $board[1][2] === $board[2][2]) {
-        return $board[0][2];
-    }
-
-    //Winning Diagonals
-    if ($board[0][0] === $board[1][1] && $board[1][1] === $board[2][2]) {
-        return $board[1][1];
-    }
-    if ($board[0][2] === $board[1][1] && $board[1][0] === $board[2][0]) {
-        return $board[1][1];
+    foreach (WINNING_COMBOS as $combo) {
+        if (checkRow($combo[0], $combo[1], $combo[2], $board)) {
+            return $board[$combo[0][0]][$combo[0][1]];
+        }
     }
 
     return ' ';
 }
-function isTie($board) {
+
+function isTie($board)
+{
     foreach ($board as $line) {
         if (in_array(' ', $line)) {
             return false;
@@ -83,11 +83,22 @@ function isTie($board) {
     return true;
 }
 
+function checkRow($x, $y, $z, $board)
+{
+    if ($board[$x[0]][$x[1]] === $board[$y[0]][$y[1]]
+        && $board[$y[0]][$y[1]] === $board[$z[0]][$z[1]]
+        && $board[$x[0]][$x[1]] !== ' ') {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 do {
 // New Game Setup
     $board = newBoard();
     $turn = 'X';
-    drawIntro();
+    echo displayIntro();
 
 // Game
     do {
@@ -100,12 +111,12 @@ do {
 
             $board[(int)$location[0]][(int)$location[1]] = $turn;
             $turn === 'X' ? $turn = 'O' : $turn = 'X';
-            displayBoard($board);
+            echo displayBoard($board);
 
         } else {
 
             echo "Sorry, this spot is taken. Try again.\n";
-            displayBoard($board);
+            echo displayBoard($board);
 
         }
 

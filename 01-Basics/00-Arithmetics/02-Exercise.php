@@ -1,15 +1,16 @@
 <?php
 
-function checkOddEven($number) {
+function checkOddEven($number)
+{
     if ($number % 2 === 0) {
-        echo "$number is even number. \n";
+         $message = "$number is even number. \n";
     } else {
-        echo "$number is odd number. \n";
+        $message = "$number is odd number. \n";
     }
 
-    echo "Bye!\n";
+    return $message . "Bye!\n";
 }
 
 // Tests
-checkOddEven(6);
-checkOddEven(7);
+echo checkOddEven(6);
+echo checkOddEven(7);

@@ -1,7 +1,6 @@
 <?php
 
 $numberToGuess = rand(1, 100);
-
 echo "I'm thinking of a number between 1-100.  Try to guess it.\n";
 $guess = readline("> ");
 

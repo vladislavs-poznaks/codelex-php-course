@@ -23,16 +23,16 @@ class BankAccount
             $value = "$" . number_format($this->balance, 2);
         }
 
-        echo "$this->name, $value\n";
+        return "$this->name, $value\n";
     }
 
 }
 
 $bensonAccount = new BankAccount("Benson", 20);
-$bensonAccount->showNameAndBalance();
+echo $bensonAccount->showNameAndBalance();
 
 $bensonAccount->setBalance(17.5);
-$bensonAccount->showNameAndBalance();
+echo $bensonAccount->showNameAndBalance();
 
 $bensonAccount->setBalance(-17.5);
-$bensonAccount->showNameAndBalance();
+echo $bensonAccount->showNameAndBalance();
